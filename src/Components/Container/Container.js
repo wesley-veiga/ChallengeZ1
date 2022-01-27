@@ -2,15 +2,16 @@ import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 
 const Container = props => {
+  const {backgroundColor, children} = props;
+
   return (
-    <SafeAreaView style={styles.container(props.backgroundColor)}>
+    <SafeAreaView style={styles.container(backgroundColor)} testID="container">
       <StatusBar
+        testID="statusbar"
         barStyle="dark-content"
-        backgroundColor={
-          props.backgroundColor ? props.backgroundColor : '#F9F9F9'
-        }
+        backgroundColor={backgroundColor ? backgroundColor : '#F9F9F9'}
       />
-      {props.children}
+      {children}
     </SafeAreaView>
   );
 };

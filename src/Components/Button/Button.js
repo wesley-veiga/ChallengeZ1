@@ -13,9 +13,12 @@ const Button = props => {
 
   return (
     <TouchableOpacity
-      style={[styles.container(backgroundColor), containerStyle]}
-      onPress={() => onPress()}>
-      <Text style={[styles.title(titleColor), titleStyle]}>{title}</Text>
+      style={styles.container(backgroundColor, containerStyle)}
+      onPress={() => onPress()}
+      testID="button">
+      <Text style={styles.title(titleColor, titleStyle)} testID="title">
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -23,7 +26,7 @@ const Button = props => {
 export default Button;
 
 const styles = StyleSheet.create({
-  container: backgroundColor => ({
+  container: (backgroundColor, containerStyle) => ({
     width: '80%',
     height: 70,
     backgroundColor: backgroundColor ? backgroundColor : 'green',
@@ -38,13 +41,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
     elevation: 5,
+    ...containerStyle,
   }),
-  title: titleColor => ({
+  title: (titleColor, titleStyle) => ({
     fontWeight: '400',
     fontSize: 25,
     color: titleColor ? titleColor : '#FFF',
     textAlign: 'center',
+    ...titleStyle,
   }),
 });
